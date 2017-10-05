@@ -15,3 +15,4 @@ currency_select.select_by_value('EUR')
 # Click go
 search_button = driver.find_element_by_id('searchbutton')
 search_button.click()
+driver.close()
