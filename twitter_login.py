@@ -4,25 +4,22 @@ import selenium.webdriver.support.ui as ui
 import getpass
 
 driver = webdriver.Chrome()
-driver.get('https://twitter.com')
+driver.get('https://twitter.com/login')
 
-# Open the login dialog
-open_dialog_btn = driver.find_element_by_class_name('js-login')
-open_dialog_btn.click()
-
-# Get and enter username
+# Get username and password
 username = input('Twitter username:')
-username_input = driver.find_element_by_class_name('js-signin-email')
+password = getpass.getpass('Password:')
+
+# Enter username
+username_input = driver.find_element_by_class_name('js-username-field')
+username_input.clear()
 username_input.send_keys(username)
 
-# Get and enter password
-password = getpass.getpass('Password:')
-password_input = driver.find_element_by_xpath("//input[@type='password']")
+# Enter password
+password_input = driver.find_element_by_class_name("js-password-field")
+password_input.clear()
 password_input.send_keys(password)
-
-# Click login
-submit_button = driver.find_element_by_class_name('js-submit')
-submit_button.click()
+password_input.send_keys(Keys.RETURN)
 
 # Wait and close the driver
 ui.WebDriverWait(driver, 25)
